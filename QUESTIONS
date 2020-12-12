@@ -1,0 +1,25 @@
+
+1) Fill in the table below to indicate the average speedup for various
+sizes of the thread pool. Because the results will vary significantly
+from run to run, use the option -g 20 to run the boggle code
+20 times to get a better average.
+
+thread pool size    average speedup
+       4              
+       8             
+      12            
+      16           
+      20          
+      24         
+
+2) You should see the average speedup increases when the thread pool
+size increases up to the size 20.  Why don't we see a speedup for 
+thread pool sizes 20 and 24.
+
+
+3) Note that when the number of threads increases, there is also increased
+competition to update the solution vector.  How might an
+increase in the number of solution words impact performance?
+
+
+
