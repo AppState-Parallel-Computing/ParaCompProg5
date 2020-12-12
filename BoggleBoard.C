@@ -13,7 +13,7 @@
  */
 BoggleBoard::BoggleBoard()
 {
-  float cumulativeFrequencies[16];
+  float cumulativeFrequencies[26];
   //Use the frequency of each letter to build the cumulative frequencies 
   cumulativeFrequencies[0] = 0;
   for (int j = 1; j < 26; j++)

@@ -2,7 +2,8 @@
 1) Fill in the table below to indicate the average speedup for various
 sizes of the thread pool. Because the results will vary significantly
 from run to run, use the option -g 20 to run the boggle code
-20 times to get a better average.
+20 times to get a better average. Be sure the code is compiled with the
+NODEBUGFLAGS so that it will demonstrate the best performance.
 
 thread pool size    average speedup
        4              
