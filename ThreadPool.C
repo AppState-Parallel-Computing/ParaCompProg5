@@ -22,23 +22,12 @@ void ThreadPool::after_task_hook()
 {
   //reduce active threads
   active_threads--;
-  if (tasks_to_add == false && active_threads == 0 && tasks.empty()) 
+  if (num_tasks == 0 && active_threads == 0 && tasks.empty()) 
   {
     stop_pool = true;
     //signal main thread executing wait_and_stop function
     cv_wait.notify_one();
   }
-}
-
-/*
- * no_more_tasks
- * Set by the code using the thread pool to indicate that no
- * more tasks are going to be added.  This prevents after_task_hook
- * from setting stop_pool to true prematurely.
- */
-void ThreadPool::no_more_tasks()
-{
-  tasks_to_add = false;
 }
 
 /*
@@ -49,11 +38,11 @@ void ThreadPool::no_more_tasks()
  * Input:
  *   capacity - number of threads to create
  */
-ThreadPool::ThreadPool(uint64_t capacity_) :
+ThreadPool::ThreadPool(uint64_t capacity_, uint64_t num_tasks_) :
   stop_pool(false),     // pool is running
   active_threads(0),    // no work to be done
-  capacity(capacity_),  // remember size
-  tasks_to_add(true)    // tasks to add
+  num_tasks(num_tasks_), // number of tasks for the pool to handle
+  capacity(capacity_)  // remember size
 {        
   // this function is executed by the threads
   auto wait_loop = [this] ( ) -> void 

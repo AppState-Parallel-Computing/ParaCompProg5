@@ -15,6 +15,13 @@
 ThreadedBoggle::ThreadedBoggle(BoggleBoard * board, int threadPoolSize):Boggle(board)
 {
   //initialize the thread pool and the bestWord
+  //The ThreadPool constructor needs to be passed the number of
+  //threads in the pool (threadPoolSize) and the number of
+  //tasks that are going to created (the number of times spawn
+  //will be called).  This second parameter is needed to prevent
+  //a race condition.  There's an error in the book code where
+  //a thread might set stop_pool to true when the main thread still
+  //has tasks to add.
 } 
 
 /*
@@ -76,10 +83,7 @@ float ThreadedBoggle::playGame()
   //the ThreadedBoggle class.  It can be a lambda expression
   //or a function that is not part of a class.
 
-  //You'll need these two calls to tell the Thread Pool that
-  //you are finished adding tasks and then to wait until
-  //the Thread Pool is empty
-  //TP->no_more_tasks();
+  //Wait until the Thread Pool is empty
   //TP->wait_and_stop();
 
   //stop timing the solver

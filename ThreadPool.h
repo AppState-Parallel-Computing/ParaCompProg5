@@ -25,11 +25,8 @@ class ThreadPool
     // the state of the thread, pool
     bool stop_pool;
     std::atomic<uint32_t> active_threads;
+    std::atomic<uint32_t> num_tasks;
     const uint32_t capacity;
-
-    //set by the program using the thread pool to indicate
-    //when it is finished adding tasks by calling no_more_tasks
-    bool tasks_to_add;
 
     //template functions must be in the header file
     /*
@@ -57,9 +54,9 @@ class ThreadPool
     void after_task_hook();
 
   public:
-    ThreadPool(uint64_t capacity_);
+    ThreadPool(uint64_t capacity_, uint64_t num_tasks_);
     ~ThreadPool();
-    void no_more_tasks();
+    //void no_more_tasks();
     void wait_and_stop();
 
     //template functions must be in the header file
@@ -116,6 +113,7 @@ class ThreadPool
     template <typename Func, typename ... Args>
     void spawn(Func && func, Args && ... args) 
     {
+      num_tasks--;
       // enqueue if idling threads
       if (active_threads < capacity)
         enqueue(func, args...);
