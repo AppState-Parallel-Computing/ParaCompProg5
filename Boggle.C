@@ -56,7 +56,7 @@ bool Boggle::equal(Boggle & boggle)
   if (this->sols.size() != boggle.sols.size())
   {
     printf("Lengths do not match: %d != %d\n",
-           this->sols.size(), boggle.sols.size());
+           (int)this->sols.size(), (int)boggle.sols.size());
     return false;
   }
   //see if their best words are identical
@@ -71,7 +71,7 @@ bool Boggle::equal(Boggle & boggle)
   //identical
   std::sort(this->sols.begin(), this->sols.end());
   std::sort(boggle.sols.begin(), boggle.sols.end());
-  for (int i = 0; i < this->sols.size(); i++)
+  for (int i = 0; i < (int) this->sols.size(); i++)
   {
     if (this->sols[i] != boggle.sols[i])
     {

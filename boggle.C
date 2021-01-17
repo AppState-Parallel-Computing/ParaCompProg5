@@ -13,12 +13,12 @@ static void usage();
 
 int main(int argc, char ** argv)
 {
-  double stimeTotal = 0; //total sequential boggle times
-  double ttimeTotal = 0; //total threaded boggle times
-  float stime;           //individual sequential boggle time
-  float ttime;           //individual threaded boggle time
-  int threadPoolSize;    //size of thread pool used by threaded version
-  int gameCount;         //number of boggle boards to solve
+  double stimeTotal = 0;     //total sequential boggle times
+  double ttimeTotal = 0;     //total threaded boggle times
+  float stime;               //individual sequential boggle time
+  float ttime;               //individual threaded boggle time
+  int threadPoolSize = 0;    //size of thread pool used by threaded version
+  int gameCount = 0;         //number of boggle boards to solve
 
   //parse command line arguments
   parseArgs(argc, argv, threadPoolSize, gameCount);

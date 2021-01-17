@@ -1,7 +1,7 @@
 CC = g++
-DEBUGFLAGS = -g -c -std=c++11
-NODEBUGFLAGS = -c -std=c++11 -O2
-CFLAGS = $(DEBUGFLAGS)
+DEBUGFLAGS = -g -c -std=c++11 -Wall -Werror
+NODEBUGFLAGS = -c -std=c++11 -O2 -Wall -Werror
+CFLAGS = $(NODEBUGFLAGS)
 OBJS = Dict.o boggle.o SequentialBoggle.o BoggleBoard.o ThreadedBoggle.o \
  ThreadPool.o Boggle.o
 
