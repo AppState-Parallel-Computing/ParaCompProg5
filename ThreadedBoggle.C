@@ -15,8 +15,12 @@
 ThreadedBoggle::ThreadedBoggle(BoggleBoard * board, int threadPoolSize):Boggle(board)
 {
   //Initialize the thread pool and the bestWord. A pointer
-  //to a ThreadPool object and an atomic bestWord are declared in
-  //ThreadedBoggle.h.
+  //to a ThreadPool object is declared in
+  //ThreadedBoggle.h. You need to add a data member that is an atomic
+  //to ThreadedBoggle.h. It needs to store 8 characters
+  //for the best word. Remember you can use an atomic to encapsulate 
+  //a user defined data type.  A union is helpful here so you can access
+  //it as either a uint64_t or a char array.
   //
   //You can initialize an atomic with a store.  Google it.
   //
