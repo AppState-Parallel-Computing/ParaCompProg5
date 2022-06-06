@@ -54,11 +54,11 @@ void ThreadedBoggle::updateSolution(std::string newWord)
  */
 void ThreadedBoggle::updateBestWord(std::string newWord)
 {
+  //Get the up to 8 characters that make up the bestWord
+  //out of the 64 bit atomic variable using a load
   //You'll need to add a declaration of the atomic variable to
   //ThreadedBoggle.h
   //
-    //Get the up to 8 characters that make up the bestWord
-    //out of the 64 bit atomic variable
     //convert the 8 characters into a string (Write a method or
     //lambda expression to do this.)
 
