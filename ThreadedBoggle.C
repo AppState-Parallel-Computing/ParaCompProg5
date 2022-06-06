@@ -37,8 +37,9 @@ ThreadedBoggle::ThreadedBoggle(BoggleBoard * board, int threadPoolSize):Boggle(b
 
 /*
  * updateSolution
- * Adds a new word to the solution vector.  It needs to be done
- * atomically.
+ * Adds a new word to the solution vector.  Only one thread should be
+ * able to modified the vector at a time.
+ * 
  * Inputs:
  *   newWord - word to add to the solution vector
  */
@@ -53,11 +54,11 @@ void ThreadedBoggle::updateSolution(std::string newWord)
  */
 void ThreadedBoggle::updateBestWord(std::string newWord)
 {
-  //Get the up to 8 characters that make up the bestWord
-  //out of the 64 bit atomic variable
   //You'll need to add a declaration of the atomic variable to
   //ThreadedBoggle.h
   //
+    //Get the up to 8 characters that make up the bestWord
+    //out of the 64 bit atomic variable
     //convert the 8 characters into a string (Write a method or
     //lambda expression to do this.)
 
@@ -73,7 +74,9 @@ void ThreadedBoggle::updateBestWord(std::string newWord)
     //if the bestword should be updated with the newWord then
     //build a 64-bit unsigned out of the newWord and try to update
     //it.  Note: multiple threads may be trying to do this at the
-    //same time! The best word needs to win!
+    //same time! You need to use a compare and exchange so that 
+    //only one will succeed. The others might try again assuming their
+    //word is better than the thread that succeeded.
     //See book for how to do this.
 }
 
